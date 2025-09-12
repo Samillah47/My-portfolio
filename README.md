@@ -35,8 +35,8 @@ The portfolio includes the following sections:
 ---
 ## Get in Touch
 
-- **Email:** [email](mailto:samillah.mutoni9@gmail.com)  
-- **LinkedIn:** [linkin](https://www.linkedin.com/in/samillah-mutoni-786523315)  
+- **Email:** [samillah.mutoni9@gmail.com](mailto:samillah.mutoni9@gmail.com)  
+- **LinkedIn:** [Samillah Mutoni](https://www.linkedin.com/in/samillah-mutoni-786523315)  
 
 
 

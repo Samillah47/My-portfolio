@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samillah MUTONI - Software Engineer & Cybersecurity Enthusiast</title>
+    <meta name="description" content="Software Engineering student specializing in cybersecurity, full-stack development, and DevOps. Building secure, scalable solutions.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            /* Main color palette - Tech blue theme */
+            --background: 240 10% 3.9%;
+            --foreground: 0 0% 98%;
+            --card: 240 10% 7%;
+            --card-foreground: 0 0% 98%;
+            --primary: 200 100% 60%;
+            --primary-foreground: 240 10% 3.9%;
+            --secondary: 240 10% 15%;
+            --secondary-foreground: 0 0% 98%;
+            --muted: 240 10% 15%;
+            --muted-foreground: 240 5% 64.9%;
+            --accent: 270 100% 70%;
+            --accent-foreground: 240 10% 3.9%;
+            --border: 240 10% 15%;
+            --radius: 0.75rem;
+            
+            /* Custom design tokens */
+            --gradient-primary: linear-gradient(135deg, hsl(200 100% 60%), hsl(270 100% 70%));
+            --gradient-card: linear-gradient(145deg, hsl(240 10% 7%), hsl(240 10% 10%));
+            --gradient-hero: linear-gradient(135deg, hsl(240 10% 3.9%) 0%, hsl(240 15% 8%) 50%, hsl(200 100% 5%) 100%);
+            --shadow-glow: 0 0 30px hsl(200 100% 60% / 0.3);
+            --shadow-card: 0 8px 32px hsl(240 10% 2% / 0.5);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--gradient-hero);
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-gradient {
+            background: var(--gradient-card);
+        }
+
+        .transition-smooth {
+            transition: var(--transition-smooth);
+        }
+
+        .hover-lift {
+            transition: var(--transition-smooth);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        .btn-primary:hover {
+            background: hsl(var(--primary) / 0.9);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: hsl(var(--primary));
+            border: 1px solid hsl(var(--primary) / 0.5);
+        }
+
+        .btn-outline:hover {
+            background: hsl(var(--primary) / 0.1);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: hsl(var(--foreground));
+        }
+
+        .btn-ghost:hover {
+            background: hsl(var(--secondary));
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--gradient-card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid hsl(var(--border));
+        }
+
+        /* Badge Styles */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: calc(var(--radius) - 2px);
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+        }
+
+        .badge-outline {
+            background: transparent;
+            border: 1px solid hsl(var(--border));
+        }
+
+        /* Navigation Styles */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: hsl(var(--background) / 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid hsl(var(--primary) / 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: hsl(var(--primary));
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 64rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4.5rem;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: hsl(var(--muted-foreground));
+            max-width: 32rem;
+            margin: 0 auto 3rem auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: hsl(var(--secondary) / 0.5);
+            color: hsl(var(--primary));
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            background: hsl(var(--primary) / 0.2);
+            transform: translateY(-4px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: hsl(var(--muted-foreground));
+            text-align: center;
+            max-width: 32rem;
+            margin: 0 auto 4rem auto;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        @media (min-width: 768px) {
+            .grid-md-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-lg-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-lg-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Skills Grid */
+        .skill-card {
+            background: var(--gradient-card);
+            border: 1px solid hsl(var(--primary) / 0.2);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .skill-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background: hsl(var(--secondary) / 0.5);
+            color: hsl(var(--secondary-foreground));
+            border-radius: calc(var(--radius) - 4px);
+        }
+
+        /* Projects */
+        .project-card {
+            position: relative;
+            background: var(--gradient-card);
+            border: 1px solid hsl(var(--primary) / 0.2);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: var(--transition-smooth);
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: calc(var(--radius) - 4px);
+        }
+
+        .status-completed {
+            background: hsl(142 76% 36% / 0.2);
+            color: hsl(142 76% 36%);
+            border: 1px solid hsl(142 76% 36% / 0.3);
+        }
+
+        .status-progress {
+            background: hsl(221 83% 53% / 0.2);
+            color: hsl(221 83% 53%);
+            border: 1px solid hsl(221 83% 53% / 0.3);
+        }
+
+        .status-concept {
+            background: hsl(262 83% 58% / 0.2);
+            color: hsl(262 83% 58%);
+            border: 1px solid hsl(262 83% 58% / 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: hsl(var(--secondary) / 0.2);
+            border-top: 1px solid hsl(var(--primary) / 0.2);
+            padding: 2rem 0;
+            text-align: center;
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: hsl(var(--background) / 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid hsl(var(--primary) / 0.2);
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-link {
+            display: block;
+            padding: 0.75rem 0;
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        .mobile-menu-link:hover {
+            color: hsl(var(--primary));
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: hsl(var(--primary)); }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-typing {
+            overflow: hidden;
+            border-right: 2px solid;
+            white-space: nowrap;
+            animation: typing 3s steps(40) 1s forwards, blink 1s step-end infinite;
+            width: 0;
+        }
+
+        /* Hide elements initially for animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div>
+                <h1 style="font-size: 1.25rem; font-weight: 800;">
+                    <span class="text-gradient">SM</span>
+                </h1>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div style="display: none; align-items: center; gap: 1rem;">
+                <a href="mailto:samillah.mutoni9@gmail.com" class="social-link" style="width: 2.5rem; height: 2.5rem;">
+                    <i data-lucide="mail" style="width: 1rem; height: 1rem;"></i>
+                </a>
+                <a href="https://github.com/Samillah47" class="social-link" style="width: 2.5rem; height: 2.5rem;">
+                    <i data-lucide="github" style="width: 1rem; height: 1rem;"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/samillah-mutoni-786523315" class="social-link" style="width: 2.5rem; height: 2.5rem;">
+                    <i data-lucide="linkedin" style="width: 1rem; height: 1rem;"></i>
+                </a>
+                <a href="#contact" class="btn btn-primary" style="margin-left: 1rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                    Hire Me
+                </a>
+            </div>
+            
+            <button class="btn btn-ghost mobile-menu-toggle" style="display: block; padding: 0.5rem;">
+                <i data-lucide="menu" style="width: 1.5rem; height: 1.5rem;"></i>
+            </button>
+            
+            <div class="mobile-menu">
+                <a href="#hero" class="mobile-menu-link">Home</a>
+                <a href="#about" class="mobile-menu-link">About</a>
+                <a href="#skills" class="mobile-menu-link">Skills</a>
+                <a href="#projects" class="mobile-menu-link">Projects</a>
+                <a href="#experience" class="mobile-menu-link">Experience</a>
+                <a href="#contact" class="mobile-menu-link">Contact</a>
+                <div style="display: flex; gap: 1rem; padding: 1rem 0; border-top: 1px solid hsl(var(--border)); margin-top: 1rem;">
+                    <a href="mailto:samillah.mutoni9@gmail.com" class="social-link">
+                        <i data-lucide="mail" style="width: 1rem; height: 1rem;"></i>
+                    </a>
+                    <a href="https://github.com/Samillah47" class="social-link">
+                        <i data-lucide="github" style="width: 1rem; height: 1rem;"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/samillah-mutoni-786523315" class="social-link">
+                        <i data-lucide="linkedin" style="width: 1rem; height: 1rem;"></i>
+                    </a>
+                </div>
+                <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    Hire Me
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge badge-outline" style="margin-bottom: 1.5rem; color: hsl(var(--primary)); border-color: hsl(var(--primary) / 0.5);">
+                    <i data-lucide="map-pin" style="width: 1rem; height: 1rem; margin-right: 0.5rem;"></i>
+                    Kigali, Rwanda
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="text-gradient">Samillah</span><br>
+                    <span>MUTONI</span>
+                </h1>
+                
+                <div class="hero-subtitle">
+                    <span class="animate-typing">Software Engineer & Cybersecurity Enthusiast</span>
+                </div>
+                
+                <p class="hero-description">
+                    Building secure, scalable solutions with expertise in full-stack development, 
+                    networking, and DevOps. Passionate about cybersecurity and delivering real-world impact.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1.125rem;">
+                        <i data-lucide="mail" style="width: 1.25rem; height: 1.25rem; margin-right: 0.5rem;"></i>
+                        Get In Touch
+                    </a>
+                    <a href="#projects" class="btn btn-outline" style="padding: 0.75rem 2rem; font-size: 1.125rem;">
+                        View Projects
+                    </a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="mailto:samillah.mutoni9@gmail.com" class="social-link">
+                        <i data-lucide="mail" style="width: 1.5rem; height: 1.5rem;"></i>
+                    </a>
+                    <a href="https://github.com/Samillah47" class="social-link">
+                        <i data-lucide="github" style="width: 1.5rem; height: 1.5rem;"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/samillah-mutoni-786523315" class="social-link">
+                        <i data-lucide="linkedin" style="width: 1.5rem; height: 1.5rem;"></i>
+                    </a>
+                    <a href="tel:+250788469171" class="social-link">
+                        <i data-lucide="phone" style="width: 1.5rem; height: 1.5rem;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="section-title">
+                    About <span class="text-gradient">Me</span>
+                </h2>
+                <p class="section-subtitle">
+                    Passionate about creating secure, innovative solutions that make a difference
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-2" style="gap: 3rem; align-items: center;">
+                <div style="space-y: 1.5rem;">
+                    <p style="font-size: 1.125rem; line-height: 1.7;">
+                        I'm a Software Engineering student with a strong foundation in networking, 
+                        full-stack development, and DevOps. My journey began with networking at APPEGA 
+                        Gahengeri TVET School, where I discovered my passion for technology and security.
+                    </p>
+                    
+                    <p style="font-size: 1.125rem; line-height: 1.7;">
+                        Currently pursuing my Bachelor's in Software Engineering at Adventist University 
+                        of Central Africa, I'm focused on building scalable, secure systems using modern 
+                        technologies like Java, Python, Docker, and MySQL.
+                    </p>
+                    
+                    <p style="font-size: 1.125rem; line-height: 1.7;">
+                        My goal is to specialize in Cybersecurity and Secure Software Engineering, 
+                        contributing to open-source projects while developing enterprise-grade solutions 
+                        that prioritize security and performance.
+                    </p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 1rem;">
+                        <span class="badge">Problem Solver</span>
+                        <span class="badge">Team Player</span>
+                        <span class="badge">Quick Learner</span>
+                        <span class="badge">Detail Oriented</span>
+                    </div>
+                </div>
+                
+                <div style="space-y: 1.5rem;">
+                    <div class="card hover-lift" style="border-color: hsl(var(--primary) / 0.2);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="skill-icon" style="background: hsl(var(--primary) / 0.2); color: hsl(var(--primary));">
+                                <i data-lucide="graduation-cap" style="width: 1.5rem; height: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-size: 1.25rem; font-weight: 600;">Education</h3>
+                                <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">Currently Studying</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">
+                            Bachelor in Software Engineering at Adventist University of Central Africa, 
+                            with coursework in algorithms, databases, and web development.
+                        </p>
+                    </div>
+                    
+                    <div class="card hover-lift" style="border-color: hsl(var(--primary) / 0.2);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="skill-icon" style="background: hsl(var(--accent) / 0.2); color: hsl(var(--accent));">
+                                <i data-lucide="award" style="width: 1.5rem; height: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-size: 1.25rem; font-weight: 600;">Certifications</h3>
+                                <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">Industry Recognition</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">
+                            NetOps I & II certified, ALX AI Career Essentials, 
+                            CISCO Networking Academy certifications in OS and Networking Basics.
+                        </p>
+                    </div>
+                    
+                    <div class="card hover-lift" style="border-color: hsl(var(--primary) / 0.2);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="skill-icon" style="background: hsl(var(--primary) / 0.2); color: hsl(var(--primary));">
+                                <i data-lucide="target" style="width: 1.5rem; height: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-size: 1.25rem; font-weight: 600;">Focus Areas</h3>
+                                <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">Specializations</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">
+                            Cybersecurity, Secure Software Engineering, DevOps practices, 
+                            and building scalable distributed systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section" style="background: hsl(var(--secondary) / 0.2);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="section-title">
+                    Technical <span class="text-gradient">Skills</span>
+                </h2>
+                <p class="section-subtitle">
+                    A comprehensive toolkit for building secure, scalable solutions
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-2 grid-lg-4" id="skills-grid">
+                <!-- Skills will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="section-title">
+                    Featured <span class="text-gradient">Projects</span>
+                </h2>
+                <p class="section-subtitle">
+                    Real-world solutions showcasing expertise in security, scalability, and innovation
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-2 grid-lg-3" id="projects-grid">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://github.com/Samillah47" class="btn btn-outline" style="padding: 0.75rem 2rem;">
+                    <i data-lucide="github" style="width: 1.25rem; height: 1.25rem; margin-right: 0.5rem;"></i>
+                    View All Projects on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section" style="background: hsl(var(--secondary) / 0.2);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="section-title">
+                    Professional <span class="text-gradient">Experience</span>
+                </h2>
+                <p class="section-subtitle">
+                    Building expertise through hands-on experience and continuous learning
+                </p>
+            </div>
+            
+            <div id="experience-timeline">
+                <!-- Experience will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="section-title">
+                    Let's <span class="text-gradient">Connect</span>
+                </h2>
+                <p class="section-subtitle">
+                    Ready to collaborate on innovative projects or discuss exciting opportunities
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-lg-3" style="gap: 2rem;">
+                <!-- Contact Information -->
+                <div style="grid-column: span 2 / span 2;">
+                    <div class="card" style="padding: 2rem; border-color: hsl(var(--primary) / 0.2);">
+                        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                            <i data-lucide="message-square" style="width: 1.5rem; height: 1.5rem; color: hsl(var(--primary));"></i>
+                            Get In Touch
+                        </h3>
+                        
+                        <div style="space-y: 1.5rem; margin-bottom: 2rem;" id="contact-info">
+                            <!-- Contact info will be populated by JavaScript -->
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <a href="mailto:samillah.mutoni9@gmail.com" class="btn btn-primary" style="padding: 0.75rem 2rem; font-weight: 600;">
+                                <i data-lucide="mail" style="width: 1.25rem; height: 1.25rem; margin-right: 0.5rem;"></i>
+                                Email Me
+                            </a>
+                            <a href="Samillah's resume.pdf" class="btn btn-outline" style="padding: 0.75rem 2rem; font-weight: 600;">
+                                <i data-lucide="download" style="width: 1.25rem; height: 1.25rem; margin-right: 0.5rem;"></i>
+                                Download CV
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="grid grid-cols-1 grid-md-2" style="gap: 1.5rem; margin-top: 2rem;" id="social-cards">
+                        <!-- Social links will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Additional Information -->
+                <div style="space-y: 1.5rem;">
+                    <!-- Languages -->
+                    <div class="card" style="border-color: hsl(var(--accent) / 0.2);">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="globe" style="width: 1.25rem; height: 1.25rem; color: hsl(var(--accent));"></i>
+                            Languages
+                        </h3>
+                        <div style="space-y: 1rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 500;">English</span>
+                                    <span class="badge badge-outline" style="font-size: 0.75rem;">Expert</span>
+                                </div>
+                                <div style="width: 100%; background: hsl(var(--secondary) / 0.3); border-radius: 9999px; height: 0.5rem;">
+                                    <div style="background: hsl(var(--accent)); height: 0.5rem; border-radius: 9999px; width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 500;">Kinyarwanda</span>
+                                    <span class="badge badge-outline" style="font-size: 0.75rem;">Native</span>
+                                </div>
+                                <div style="width: 100%; background: hsl(var(--secondary) / 0.3); border-radius: 9999px; height: 0.5rem;">
+                                    <div style="background: hsl(var(--accent)); height: 0.5rem; border-radius: 9999px; width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interests -->
+                    <div class="card" style="border-color: hsl(var(--primary) / 0.2);">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="heart" style="width: 1.25rem; height: 1.25rem; color: hsl(var(--primary));"></i>
+                            Interests & Hobbies
+                        </h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="badge">Cybersecurity</span>
+                            <span class="badge">Puzzle Solving</span>
+                            <span class="badge">Reading</span>
+                            <span class="badge">Volunteering</span>
+                            <span class="badge">Open Source</span>
+                            <span class="badge">AI/ML</span>
+                            <span class="badge">Network Security</span>
+                            <span class="badge">Software Architecture</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Availability -->
+                    <div class="card" style="border-color: hsl(142 76% 36% / 0.2);">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                            <div style="width: 0.75rem; height: 0.75rem; background: hsl(142 76% 36%); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                            <h3 style="font-size: 1.25rem; font-weight: 600; color: hsl(142 76% 36%);">Available for Work</h3>
+                        </div>
+                        <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">
+                            Open to internships, entry-level positions, and collaborative projects 
+                            in software engineering and cybersecurity.
+                        </p>
+                        <span class="badge badge-outline" style="border-color: hsl(142 76% 36% / 0.5); color: hsl(142 76% 36%);">
+                            Actively Seeking Opportunities
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="font-size: 0.875rem;">
+                © 2025 Samillah MUTONI.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Skills data
+        const skillCategories = [
+            {
+                title: "Programming Languages",
+                icon: "code",
+                skills: ["Java", "Python", "HTML/CSS", "SQL", "JavaScript", "Shell Scripting"],
+                color: "primary"
+            },
+            {
+                title: "Frameworks & Libraries",
+                icon: "globe",
+                skills: ["Swing", "JDBC", "React", "Node.js", "Express"],
+                color: "accent"
+            },
+            {
+                title: "Databases",
+                icon: "database",
+                skills: ["MySQL", "PL/SQL", "Database Design", "Query Optimization"],
+                color: "primary"
+            },
+            {
+                title: "DevOps & Tools",
+                icon: "server",
+                skills: ["Docker", "Traefik", "Git", "GitHub", "Nginx", "Linux"],
+                color: "accent"
+            },
+            {
+                title: "Networking",
+                icon: "network",
+                skills: ["Cisco Packet Tracer", "Routing & Switching", "LAN Setup", "IP Services"],
+                color: "primary"
+            },
+            {
+                title: "Security",
+                icon: "shield",
+                skills: ["Cybersecurity", "Zero-Trust Architecture", "Encryption", "Threat Detection"],
+                color: "accent"
+            },
+            {
+                title: "Data Analytics",
+                icon: "bar-chart-3",
+                skills: ["Power BI", "Data Visualization", "Dashboard Design", "Data Cleaning"],
+                color: "primary"
+            },
+            {
+                title: "Operating Systems",
+                icon: "wrench",
+                skills: ["Linux (Kali, Ubuntu)", "Windows Server", "System Administration"],
+                color: "accent"
+            }
+        ];
+
+        // Projects data
+        const projects = [
+            {
+                title: "ParkSphere",
+                description: "A distributed parking management system built with Java Swing, MySQL, and RMI. Features session handling, OTP login, PDF report generation using MVC & DAO design patterns.",
+                icon: "car",
+                tech: ["Java", "Swing", "MySQL", "RMI", "MVC", "DAO"],
+                status: "Completed",
+                highlights: ["Distributed Architecture", "Security Features", "Report Generation"]
+            },
+            {
+                title: "SecureShare",
+                description: "Final-year cybersecurity project focused on secure file sharing and access control. Implements zero-trust architecture, encryption, and role-based access management.",
+                icon: "lock",
+                tech: ["Cybersecurity", "Zero-Trust", "Encryption", "Access Control"],
+                status: "In Progress",
+                highlights: ["Zero-Trust Security", "Role-Based Access", "End-to-End Encryption"]
+            },
+            {
+                title: "DevOps Deployment System",
+                description: "Containerized deployment solution for static and dynamic sites using Docker, Traefik, and HTTPS routing. Includes Nginx setup, firewall security, and load balancing.",
+                icon: "server",
+                tech: ["Docker", "Traefik", "Nginx", "HTTPS", "Load Balancing"],
+                status: "Completed",
+                highlights: ["Container Orchestration", "HTTPS Routing", "Security Hardening"]
+            },
+            {
+                title: "SecureNet - Threat Detection",
+                description: "Machine learning-based cybersecurity project for real-time network anomaly detection. Uses supervised models with interactive dashboards for threat intelligence.",
+                icon: "shield",
+                tech: ["Python", "ML", "Random Forest", "XGBoost", "LightGBM"],
+                status: "Completed",
+                highlights: ["Real-time Detection", "ML Models", "Interactive Dashboards"]
+            },
+            {
+                title: "Order Management System",
+                description: "Enterprise-grade order management system developed in PL/SQL. Features triggers, stored procedures, and relational integrity for complex business logic.",
+                icon: "database",
+                tech: ["PL/SQL", "Oracle", "Stored Procedures", "Triggers"],
+                status: "Completed",
+                highlights: ["Enterprise Scale", "Complex Business Logic", "Team Collaboration"]
+            },
+            {
+                title: "AI-Powered Analytics Platform",
+                description: "Data analytics platform with machine learning capabilities for business intelligence. Features automated reporting, predictive analytics, and custom dashboards.",
+                icon: "brain",
+                tech: ["Python", "Power BI", "Machine Learning", "Data Visualization"],
+                status: "Concept",
+                highlights: ["Predictive Analytics", "Automated Reporting", "Business Intelligence"]
+            }
+        ];
+
+        // Experience data
+        const experiences = [
+            {
+                title: "Software Engineering Student",
+                company: "Adventist University of Central Africa",
+                period: "2022 - Present",
+                location: "Kigali, Rwanda",
+                type: "Education",
+                description: "Pursuing Bachelor's degree in Software Engineering with focus on algorithms, data structures, web development, and cybersecurity.",
+                skills: ["Java", "Python", "Data Structures", "Algorithms", "Web Development", "Databases"]
+            },
+            {
+                title: "IT Technician Intern",
+                company: "MFI DOCUMENT SOLUTIONS (R) LTD",
+                period: "April 2022 - June 2022",
+                location: "Kigali, Rwanda",
+                type: "Internship",
+                description: "Installed and maintained desktops/laptops, resolved network issues, and provided technical assistance to staff.",
+                skills: ["Hardware Maintenance", "Network Troubleshooting", "Technical Support", "Printer Setup"]
+            },
+            {
+                title: "Network Technician Intern",
+                company: "Broadcasters of ICT (BICT)",
+                period: "June 2019 - August 2019",
+                location: "Rwamagana, Rwanda",
+                type: "Internship",
+                description: "Configured Cisco routers and switches, installed CCTV systems, and created network infrastructure.",
+                skills: ["Cisco Configuration", "CCTV Installation", "Network Cabling", "Windows Server"]
+            },
+            {
+                title: "High School Diploma in Networking",
+                company: "APPEGA Gahengeri TVET School",
+                period: "2019 - 2022",
+                location: "Rwamagana, Rwanda",
+                type: "Education",
+                description: "Specialized in networking technologies including routing, switching, and network security fundamentals.",
+                skills: ["Routing & Switching", "LAN/WAN", "IP Services", "Wireless Technology", "Network Security"]
+            }
+        ];
+
+        // Contact info data
+        const contactInfo = [
+            {
+                icon: "mail",
+                label: "Email",
+                value: "samillah.mutoni9@gmail.com",
+                href: "mailto:samillah.mutoni9@gmail.com",
+                primary: true
+            },
+            {
+                icon: "phone",
+                label: "Phone",
+                value: "+250 788 469 171",
+                href: "tel:+250788469171",
+                primary: false
+            },
+            {
+                icon: "map-pin",
+                label: "Location",
+                value: "Kigali, Rwanda • KG 720 ST",
+                href: null,
+                primary: false
+            }
+        ];
+
+        // Social links data
+        const socialLinks = [
+            {
+                icon: "github",
+                label: "GitHub",
+                username: "@samillah-mutoni",
+                href: "#https://github.com/Samillah47",
+                description: "Open source contributions & projects"
+            },
+            {
+                icon: "linkedin",
+                label: "LinkedIn", 
+                username: "Samillah MUTONI",
+                href: "https://www.linkedin.com/in/samillah-mutoni-786523315",
+                description: "Professional network & experience"
+            }
+        ];
+
+        // Render skills
+        function renderSkills() {
+            const skillsGrid = document.getElementById('skills-grid');
+            skillsGrid.innerHTML = skillCategories.map((category, index) => {
+                const colorClass = category.color === "primary" ? 
+                    "background: hsl(var(--primary) / 0.2); color: hsl(var(--primary));" : 
+                    "background: hsl(var(--accent) / 0.2); color: hsl(var(--accent));";
+                
+                return `
+                    <div class="skill-card animate-on-scroll" style="animation-delay: ${index * 0.1}s;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div class="skill-icon" style="${colorClass}">
+                                <i data-lucide="${category.icon}" style="width: 1.25rem; height: 1.25rem;"></i>
+                            </div>
+                            <h3 style="font-weight: 600; font-size: 0.875rem;">${category.title}</h3>
+                        </div>
+                        <div class="skill-tags">
+                            ${category.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render projects
+        function renderProjects() {
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsGrid.innerHTML = projects.map((project, index) => {
+                let statusClass = '';
+                switch (project.status) {
+                    case 'Completed': statusClass = 'status-completed'; break;
+                    case 'In Progress': statusClass = 'status-progress'; break;
+                    case 'Concept': statusClass = 'status-concept'; break;
+                }
+                
+                return `
+                    <div class="project-card animate-on-scroll" style="animation-delay: ${index * 0.15}s;">
+                        <div class="project-status ${statusClass}">${project.status}</div>
+                        
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div class="skill-icon" style="background: hsl(var(--primary) / 0.2); color: hsl(var(--primary));">
+                                <i data-lucide="${project.icon}" style="width: 1.5rem; height: 1.5rem;"></i>
+                            </div>
+                            <h3 style="font-size: 1.25rem; font-weight: 600;">${project.title}</h3>
+                        </div>
+                        
+                        <p style="color: hsl(var(--muted-foreground)); margin-bottom: 1rem; font-size: 0.875rem; line-height: 1.6;">
+                            ${project.description}
+                        </p>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <h4 style="font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; color: hsl(var(--primary));">Key Highlights:</h4>
+                            <ul style="space-y: 0.25rem;">
+                                ${project.highlights.map(highlight => `
+                                    <li style="font-size: 0.75rem; color: hsl(var(--muted-foreground)); display: flex; align-items: center;">
+                                        <span style="width: 0.25rem; height: 0.25rem; background: hsl(var(--primary)); border-radius: 50%; margin-right: 0.5rem;"></span>
+                                        ${highlight}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                            ${project.tech.map(tech => `<span class="skill-tag">${tech}</span>`).join('')}
+                        </div>
+                        
+                        <div style="display: flex; gap: 0.5rem;">
+                            <a href="https://github.com/Samillah47" class="btn btn-outline" style="flex: 1; font-size: 0.875rem; padding: 0.5rem 1rem;">
+                                <i data-lucide="github" style="width: 1rem; height: 1rem; margin-right: 0.5rem;"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render experience
+        function renderExperience() {
+            const experienceTimeline = document.getElementById('experience-timeline');
+            experienceTimeline.innerHTML = experiences.map((exp, index) => {
+                const typeColors = {
+                    'Education': 'hsl(var(--primary))',
+                    'Internship': 'hsl(var(--accent))',
+                    'Job': 'hsl(142 76% 36%)'
+                };
+                
+                return `
+                    <div class="card hover-lift animate-on-scroll" style="margin-bottom: 1.5rem; border-color: hsl(var(--primary) / 0.2); animation-delay: ${index * 0.1}s;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                            <div>
+                                <h3 style="font-size: 1.25rem; font-weight: 600;">${exp.title}</h3>
+                                <p style="color: ${typeColors[exp.type]}; font-weight: 500; margin-top: 0.25rem;">${exp.company}</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="badge" style="background: ${typeColors[exp.type]} / 0.2; color: ${typeColors[exp.type]}; border: 1px solid ${typeColors[exp.type]} / 0.3;">
+                                    ${exp.type}
+                                </div>
+                                <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-top: 0.5rem;">${exp.period}</p>
+                                <p style="font-size: 0.75rem; color: hsl(var(--muted-foreground)); display: flex; align-items: center; justify-content: flex-end; margin-top: 0.25rem;">
+                                    <i data-lucide="map-pin" style="width: 0.75rem; height: 0.75rem; margin-right: 0.25rem;"></i>
+                                    ${exp.location}
+                                </p>
+                            </div>
+                        </div>
+                        <p style="color: hsl(var(--muted-foreground)); margin-bottom: 1rem; line-height: 1.6;">${exp.description}</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            ${exp.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render contact info
+        function renderContact() {
+            const contactInfoEl = document.getElementById('contact-info');
+            contactInfoEl.innerHTML = contactInfo.map((contact, index) => {
+                const primaryClass = contact.primary ? 
+                    'background: hsl(var(--primary) / 0.2); color: hsl(var(--primary));' : 
+                    'background: hsl(var(--secondary) / 0.5); color: hsl(var(--muted-foreground));';
+                
+                return `
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="${primaryClass} padding: 0.75rem; border-radius: 0.5rem; transition: var(--transition-smooth);">
+                            <i data-lucide="${contact.icon}" style="width: 1.25rem; height: 1.25rem;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">${contact.label}</p>
+                            ${contact.href ? 
+                                `<a href="${contact.href}" style="font-size: 1.125rem; font-weight: 500; color: hsl(var(--foreground)); text-decoration: none; transition: var(--transition-smooth);" onmouseover="this.style.color='hsl(var(--primary))'" onmouseout="this.style.color='hsl(var(--foreground))'">${contact.value}</a>` :
+                                `<p style="font-size: 1.125rem; font-weight: 500;">${contact.value}</p>`
+                            }
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const socialCards = document.getElementById('social-cards');
+            socialCards.innerHTML = socialLinks.map((social, index) => `
+                <div class="card hover-lift" style="border-color: hsl(var(--primary) / 0.2);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+                        <div style="background: hsl(var(--primary) / 0.2); color: hsl(var(--primary)); padding: 0.75rem; border-radius: 0.5rem; transition: var(--transition-smooth);">
+                            <i data-lucide="${social.icon}" style="width: 1.5rem; height: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.125rem; font-weight: 600;">${social.label}</h4>
+                            <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">${social.username}</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">${social.description}</p>
+                    <a href="${social.href}" class="btn btn-outline" style="width: 100%; font-size: 0.875rem;">
+                        <i data-lucide="globe" style="width: 1rem; height: 1rem; margin-right: 0.5rem;"></i>
+                        Visit Profile
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Navigation functionality
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link, .mobile-menu-link');
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.setAttribute('data-lucide', 'x');
+                } else {
+                    icon.setAttribute('data-lucide', 'menu');
+                }
+                lucide.createIcons();
+            });
+
+            // Smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Active section highlighting
+            function updateActiveSection() {
+                const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'contact'];
+                const scrollPosition = window.scrollY + 100;
+
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = document.getElementById(sections[i]);
+                    if (section && section.offsetTop <= scrollPosition) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sections[i]}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                        break;
+                    }
+                }
+            }
+
+            window.addEventListener('scroll', updateActiveSection);
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSkills();
+            renderProjects();
+            renderExperience();
+            renderContact();
+            initNavigation();
+            initScrollAnimations();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

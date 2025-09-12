@@ -33,4 +33,10 @@ The portfolio includes the following sections:
 5. **Contact:** A contact form and social media links for easy communication.  
 
 ---
+## Get in Touch
+
+- **Email:** [email](mailto:samillah.mutoni9@gmail.com)  
+- **LinkedIn:** [linkin](https://www.linkedin.com/in/samillah-mutoni-786523315)  
+
+
 
